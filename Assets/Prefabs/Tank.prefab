@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 3942370012066033591}
   - component: {fileID: 3942370012066033590}
   - component: {fileID: 3942370012066033589}
+  - component: {fileID: 1428463938}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -209,7 +210,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 84
   m_CollisionDetection: 0
 --- !u!65 &3942370012066033590
 BoxCollider:
@@ -320,6 +321,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1428463938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5284467302108326208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29af3199e11b72e47b41ff380db540fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0.2
+  tankType: 0
+  movementJoystick: {fileID: 0}
 --- !u!1 &7337406338998059200
 GameObject:
   m_ObjectHideFlags: 0

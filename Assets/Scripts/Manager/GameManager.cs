@@ -2,17 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class GameManager : MonoBehaviour {
+
+    public MovementJoystick movementJoystick;
+    public GameObject tankPrefab;
+    public TankManager[] tanks;
+
+    private void Start() {
+        SpawnAllTanks();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void SpawnAllTanks() {
+        for (int i = 0; i < tanks.Length; i++) {
+            GameObject tank = Instantiate(tankPrefab, tanks[i].spawnPoint.position, tanks[i].spawnPoint.rotation) as GameObject;
+            tanks[i].instance = tank;
+            if (i == 0) {
+                tanks[i].tankType = TankType.Player;
+                tanks[i].movementJoystick = movementJoystick;
+
+            }
+            tanks[i].Setup();
+        }
     }
+
 }
