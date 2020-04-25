@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TankMovement : MonoBehaviour {
     public float speed = 0.2f;
+    public GameObject tankChassis;
+    public GameObject tankTracksLeft;
+    public GameObject tankTracksRight;
     [HideInInspector] public TankType tankType;
     [HideInInspector] public MovementJoystick movementJoystick;
 
@@ -25,5 +28,8 @@ public class TankMovement : MonoBehaviour {
         vector = vector.normalized; //長さ1に正規化
 
         myRigidbody.MovePosition(myRigidbody.position + vector * speed);
+        tankChassis.transform.rotation = Quaternion.LookRotation(vector); //向きを変更する
+        tankTracksLeft.transform.rotation = Quaternion.LookRotation(vector); //向きを変更する
+        tankTracksRight.transform.rotation = Quaternion.LookRotation(vector); //向きを変更する
     }
 }

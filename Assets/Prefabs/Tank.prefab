@@ -334,6 +334,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.2
+  tankChassis: {fileID: 529937482562407944}
+  tankTracksLeft: {fileID: 7384646438550751670}
+  tankTracksRight: {fileID: 7542637700675388479}
   tankType: 0
   movementJoystick: {fileID: 0}
 --- !u!1 &7337406338998059200
