@@ -28,7 +28,8 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.000010554959, y: 1.0796412, z: -0.025321364}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1649115919286175078}
   m_Father: {fileID: 3987454591866480874}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -161,6 +162,36 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &4089678741605882087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1649115919286175078}
+  m_Layer: 0
+  m_Name: FireTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1649115919286175078
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4089678741605882087}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.000010459763, y: 0.6203588, z: 1.3753213}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 603566933115336151}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5284467302108326208
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,6 +205,7 @@ GameObject:
   - component: {fileID: 3942370012066033590}
   - component: {fileID: 3942370012066033589}
   - component: {fileID: 1428463938}
+  - component: {fileID: 1536749776}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -339,6 +371,25 @@ MonoBehaviour:
   tankTracksRight: {fileID: 7542637700675388479}
   tankType: 0
   movementJoystick: {fileID: 0}
+--- !u!114 &1536749776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5284467302108326208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b38fa3f5188f6419ab17bc1669c18c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shellPrefab: {fileID: 5414529493798789902, guid: ac87b52c5ec8796459c7a03078696059,
+    type: 3}
+  fireTransform: {fileID: 1649115919286175078}
+  launchForce: 20
+  tankTurret: {fileID: 340677678900905769}
+  tankType: 0
+  shootingJoystick: {fileID: 0}
 --- !u!1 &7337406338998059200
 GameObject:
   m_ObjectHideFlags: 0

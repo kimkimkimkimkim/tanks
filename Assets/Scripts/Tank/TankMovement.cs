@@ -27,6 +27,7 @@ public class TankMovement : MonoBehaviour {
         vector = new Vector3(vector.x, 0, vector.y);
         vector = vector.normalized; //長さ1に正規化
 
+        if (vector == Vector3.zero) return;
         myRigidbody.MovePosition(myRigidbody.position + vector * speed);
         tankChassis.transform.rotation = Quaternion.LookRotation(vector); //向きを変更する
         tankTracksLeft.transform.rotation = Quaternion.LookRotation(vector); //向きを変更する

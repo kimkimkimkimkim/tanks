@@ -5,23 +5,35 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     public MovementJoystick movementJoystick;
+    public ShootingJoystick shootingJoystick;
     public GameObject tankPrefab;
-    public TankManager[] tanks;
+    public TankManager playerTank;
+    public TankManager[] cpuTanks;
 
     private void Start() {
         SpawnAllTanks();
     }
 
     private void SpawnAllTanks() {
-        for (int i = 0; i < tanks.Length; i++) {
-            GameObject tank = Instantiate(tankPrefab, tanks[i].spawnPoint.position, tanks[i].spawnPoint.rotation) as GameObject;
-            tanks[i].instance = tank;
-            if (i == 0) {
-                tanks[i].tankType = TankType.Player;
-                tanks[i].movementJoystick = movementJoystick;
+        SpawnPlayerTank();
+        SpawnCpuTanks();
+    }
 
-            }
-            tanks[i].Setup();
+    private void SpawnPlayerTank() {
+        GameObject tank = Instantiate(tankPrefab, playerTank.spawnPoint.position, playerTank.spawnPoint.rotation) as GameObject;
+        playerTank.instance = tank;
+        playerTank.tankType = TankType.Player;
+        playerTank.movementJoystick = movementJoystick;
+        playerTank.shootingJoystick = shootingJoystick;
+        playerTank.Setup();
+    }
+
+    private void SpawnCpuTanks() {
+        for (int i = 0; i < cpuTanks.Length; i++) {
+            GameObject tank = Instantiate(tankPrefab, cpuTanks[i].spawnPoint.position, cpuTanks[i].spawnPoint.rotation) as GameObject;
+            cpuTanks[i].instance = tank;
+            cpuTanks[i].tankType = TankType.CPU1;
+            cpuTanks[i].Setup();
         }
     }
 
