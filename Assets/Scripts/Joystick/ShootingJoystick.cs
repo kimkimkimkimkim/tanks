@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class ShootingJoystick : Joystick {
 
     public GameManager gameManager;
-    [HideInInspector] public TankShooting tankShooting;
+    [HideInInspector] public PlayerTankShooting tankShooting;
 
     private float inactiveAlpha = 1f;
     private float activeAlpha = 1f;

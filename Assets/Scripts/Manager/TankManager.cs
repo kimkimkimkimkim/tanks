@@ -21,16 +21,31 @@ public class TankManager {
     [HideInInspector] public TankShooting tankShooting;
 
     public void Setup() {
-        tankMovement = instance.GetComponent<TankMovement>();
-        tankShooting = instance.GetComponent<TankShooting>();
-
-        tankMovement.tankType = tankType;
-        tankShooting.tankType = tankType;
         if (tankType == TankType.Player) {
-            tankMovement.movementJoystick = movementJoystick;
-            tankShooting.shootingJoystick = shootingJoystick;
-            shootingJoystick.tankShooting = tankShooting;
+            PlayerTankSetup();
+        } else {
+            CpuTankSetup();
         }
+    }
+
+    private void PlayerTankSetup() {
+        tankMovement = instance.GetComponent<PlayerTankMovement>();
+        tankShooting = instance.GetComponent<PlayerTankShooting>();
+
+        tankMovement.movementJoystick = movementJoystick;
+        tankShooting.shootingJoystick = shootingJoystick;
+        shootingJoystick.tankShooting = (PlayerTankShooting)tankShooting;
+
+        MeshRenderer[] renderers = instance.GetComponentsInChildren<MeshRenderer>();
+
+        for (int i = 0; i < renderers.Length; i++) {
+            renderers[i].material.color = tankColor;
+        }
+    }
+
+    private void CpuTankSetup() {
+        tankMovement = instance.GetComponent<CpuTankMovement>();
+        tankShooting = instance.GetComponent<CpuTankShooting>();
 
         MeshRenderer[] renderers = instance.GetComponentsInChildren<MeshRenderer>();
 
