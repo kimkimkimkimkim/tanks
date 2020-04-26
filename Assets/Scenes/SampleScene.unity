@@ -107,7 +107,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 1.5
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -115,7 +115,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.5
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -1843,18 +1843,19 @@ MonoBehaviour:
     spawnPoint: {fileID: 50649031}
     tankType: 0
     instance: {fileID: 0}
-    tankMovement: {fileID: 0}
-    tankShooting: {fileID: 0}
     movementJoystick: {fileID: 4564306999358762218}
     shootingJoystick: {fileID: 3083658051861956584}
     healthImageContainer: {fileID: 1016304467}
     onHealthColor: {r: 1, g: 1, b: 1, a: 1}
     offHealthColor: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 1}
+    tankMovement: {fileID: 0}
+    tankShooting: {fileID: 0}
   cpuTanks:
   - tankColor: {r: 0.69803923, g: 0.1764706, b: 0.16470589, a: 0}
     spawnPoint: {fileID: 1844563965}
     tankType: 1
     instance: {fileID: 0}
+    playerTank: {fileID: 0}
     tankMovement: {fileID: 0}
     tankShooting: {fileID: 0}
 --- !u!1 &2097246401
