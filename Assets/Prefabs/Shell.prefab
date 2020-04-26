@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionParticles: {fileID: 9143002661533434893}
-  damage: 20
+  damage: 1
   maxLifeTime: 30
   reflectionNum: 1
 --- !u!1001 &9143002661514705179

@@ -207,7 +207,8 @@ GameObject:
   - component: {fileID: 6578670108757059340}
   - component: {fileID: 6578670108757059343}
   - component: {fileID: 1600741101532515256}
-  - component: {fileID: 7924713809253513322}
+  - component: {fileID: 9001003181950914652}
+  - component: {fileID: 5126556655579487354}
   m_Layer: 0
   m_Name: CpuTank
   m_TagString: Untagged
@@ -374,7 +375,7 @@ MonoBehaviour:
   tankType: 0
   movementJoystick: {fileID: 0}
   myRigidbody: {fileID: 0}
---- !u!114 &7924713809253513322
+--- !u!114 &9001003181950914652
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -383,7 +384,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2642502731985428986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06b38fa3f5188f6419ab17bc1669c18c, type: 3}
+  m_Script: {fileID: 11500000, guid: b843527c43e32314db498f4bdaaed44c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shellPrefab: {fileID: 5414529493798789902, guid: ac87b52c5ec8796459c7a03078696059,
@@ -393,6 +394,20 @@ MonoBehaviour:
   tankTurret: {fileID: 7584177993793392531}
   tankType: 0
   shootingJoystick: {fileID: 0}
+--- !u!114 &5126556655579487354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2642502731985428986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eb44d42d43163743b9dd7301993bb6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1
+  explosionPrefab: {fileID: 151086, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
 --- !u!1 &6141581806749241437
 GameObject:
   m_ObjectHideFlags: 0

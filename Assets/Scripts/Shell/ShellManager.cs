@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShellManager : MonoBehaviour {
     public ParticleSystem explosionParticles;
-    public float damage;
+    public int damage;
     public float maxLifeTime;
     public int reflectionNum; //1回反射して2回目の衝突で爆発
 
@@ -56,13 +56,13 @@ public class ShellManager : MonoBehaviour {
         Destroy(gameObject);
 
         Rigidbody targetRigidbody = collider.GetComponent<Rigidbody>();
-        /*
+        if (!targetRigidbody) return;
+
         TankHealth targetHealth = targetRigidbody.GetComponent<TankHealth>();
         if (targetRigidbody && targetHealth) {
             //タンクの場合HPを減らす
-            targetHealth.TakeDamage(m_Damage);
+            targetHealth.TakeDamage(damage);
         }
-        */
 
     }
 }
