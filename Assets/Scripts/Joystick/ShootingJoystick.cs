@@ -24,12 +24,14 @@ public class ShootingJoystick : Joystick {
     public override void OnPointerDown(PointerEventData eventData) {
         base.OnPointerDown(eventData);
         GetComponent<CanvasGroup>().alpha = activeAlpha;
+        tankShooting.changeAimImageEnabled(true);
         //transform.position = eventData.position;
     }
 
     public override void OnPointerUp(PointerEventData eventData) {
         base.OnPointerUp(eventData);
         GetComponent<CanvasGroup>().alpha = inactiveAlpha;
+        tankShooting.changeAimImageEnabled(false);
         //transform.position = iniPos;
         tankShooting.Fire();
     }

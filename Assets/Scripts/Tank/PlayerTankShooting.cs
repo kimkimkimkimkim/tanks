@@ -1,8 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerTankShooting : TankShooting {
+
+    public Image aimImage;
+
     private void FixedUpdate() {
         JoystickTurn();
     }
@@ -19,5 +23,9 @@ public class PlayerTankShooting : TankShooting {
         Rigidbody shell = Instantiate(shellPrefab, fireTransform.position, fireTransform.rotation);
 
         shell.velocity = launchForce * fireTransform.forward;
+    }
+
+    public void changeAimImageEnabled(bool enabled) {
+        aimImage.enabled = enabled;
     }
 }
