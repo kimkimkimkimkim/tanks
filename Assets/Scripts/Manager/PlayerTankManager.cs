@@ -11,6 +11,8 @@ public class PlayerTankManager : TankManager {
     public GameObject healthImageContainer;
     public Color onHealthColor;
     public Color offHealthColor;
+    [HideInInspector] public PlayerTankMovement tankMovement;
+    [HideInInspector] public PlayerTankShooting tankShooting;
 
     public void Setup() {
         SetTankMovement();

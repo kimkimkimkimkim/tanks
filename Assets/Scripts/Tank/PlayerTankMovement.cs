@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerTankMovement : TankMovement {
 
+    [HideInInspector] public MovementJoystick movementJoystick;
+
     private void FixedUpdate() {
         JoystickMovement();
     }

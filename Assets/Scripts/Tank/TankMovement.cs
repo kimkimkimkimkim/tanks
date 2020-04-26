@@ -8,10 +8,9 @@ public class TankMovement : MonoBehaviour {
     public GameObject tankTracksLeft;
     public GameObject tankTracksRight;
     [HideInInspector] public TankType tankType;
-    [HideInInspector] public MovementJoystick movementJoystick;
     [HideInInspector] public Rigidbody myRigidbody;
 
-    private void Start() {
+    public virtual void Start() {
         myRigidbody = GetComponent<Rigidbody>();
     }
 }

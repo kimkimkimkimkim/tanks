@@ -14,6 +14,4 @@ public class TankManager {
     public Transform spawnPoint;
     public TankType tankType;
     [HideInInspector] public GameObject instance;
-    [HideInInspector] public TankMovement tankMovement;
-    [HideInInspector] public TankShooting tankShooting;
 }

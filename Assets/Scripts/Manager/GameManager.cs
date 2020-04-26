@@ -23,9 +23,6 @@ public class GameManager : MonoBehaviour {
     private void SpawnPlayerTank() {
         GameObject tank = Instantiate(playerTankPrefab, playerTank.spawnPoint.position, playerTank.spawnPoint.rotation) as GameObject;
         playerTank.instance = tank;
-        //playerTank.tankType = TankType.Player;
-        //playerTank.movementJoystick = movementJoystick;
-        //playerTank.shootingJoystick = shootingJoystick;
         playerTank.Setup();
     }
 
@@ -34,6 +31,7 @@ public class GameManager : MonoBehaviour {
             GameObject tank = Instantiate(cpuTankPrefab, cpuTanks[i].spawnPoint.position, cpuTanks[i].spawnPoint.rotation) as GameObject;
             cpuTanks[i].instance = tank;
             cpuTanks[i].tankType = TankType.CPU1;
+            cpuTanks[i].playerTank = playerTank.instance;
             cpuTanks[i].Setup();
         }
     }
