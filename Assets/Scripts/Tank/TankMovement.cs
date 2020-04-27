@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TankMovement : MonoBehaviour {
-    public float speed = 0.2f;
+    public float speed;
     public GameObject tankChassis;
     public GameObject tankTracksLeft;
     public GameObject tankTracksRight;

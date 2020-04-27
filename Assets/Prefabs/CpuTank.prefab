@@ -374,9 +374,9 @@ MonoBehaviour:
   tankTracksLeft: {fileID: 829143882381066508}
   tankTracksRight: {fileID: 384750171483868293}
   tankType: 0
-  movementJoystick: {fileID: 0}
   myRigidbody: {fileID: 0}
-  playerTank: {fileID: 0}
+  targetObject: {fileID: 0}
+  navMeshAgent: {fileID: 0}
 --- !u!114 &9001003181950914652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,10 +392,11 @@ MonoBehaviour:
   shellPrefab: {fileID: 5414529493798789902, guid: ac87b52c5ec8796459c7a03078696059,
     type: 3}
   fireTransform: {fileID: 8870097887088233948}
-  launchForce: 20
+  launchForce: 5
   tankTurret: {fileID: 7584177993793392531}
   tankType: 0
   shootingJoystick: {fileID: 0}
+  targetObject: {fileID: 0}
 --- !u!114 &5126556655579487354
 MonoBehaviour:
   m_ObjectHideFlags: 0

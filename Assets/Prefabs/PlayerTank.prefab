@@ -576,7 +576,7 @@ GameObject:
   - component: {fileID: 987646383567450374}
   m_Layer: 0
   m_Name: PlayerTank
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -733,13 +733,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ecc7fe7d36ec540b7cb36ec132fac3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.2
+  speed: 0.1
   tankChassis: {fileID: 4265901940476033643}
   tankTracksLeft: {fileID: 6490453065229860309}
   tankTracksRight: {fileID: 6108540691750383708}
   tankType: 0
-  movementJoystick: {fileID: 0}
   myRigidbody: {fileID: 0}
+  movementJoystick: {fileID: 0}
 --- !u!114 &7384196292299403249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -755,7 +755,7 @@ MonoBehaviour:
   shellPrefab: {fileID: 5414529493798789902, guid: ac87b52c5ec8796459c7a03078696059,
     type: 3}
   fireTransform: {fileID: 3065797216779874565}
-  launchForce: 20
+  launchForce: 5
   tankTurret: {fileID: 4094727437969929034}
   tankType: 0
   shootingJoystick: {fileID: 0}
@@ -774,3 +774,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   explosionPrefab: {fileID: 151086, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
+  currentHealth: 0
+  healthImageContainer: {fileID: 0}
+  onHealthColor: {r: 0, g: 0, b: 0, a: 0}
+  offHealthColor: {r: 0, g: 0, b: 0, a: 0}

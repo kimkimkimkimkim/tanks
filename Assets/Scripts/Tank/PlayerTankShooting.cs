@@ -19,12 +19,6 @@ public class PlayerTankShooting : TankShooting {
         tankTurret.transform.rotation = Quaternion.LookRotation(vector); //向きを変更する
     }
 
-    public void Fire() {
-        Rigidbody shell = Instantiate(shellPrefab, fireTransform.position, fireTransform.rotation);
-
-        shell.velocity = launchForce * fireTransform.forward;
-    }
-
     public void changeAimImageEnabled(bool enabled) {
         aimImage.enabled = enabled;
     }

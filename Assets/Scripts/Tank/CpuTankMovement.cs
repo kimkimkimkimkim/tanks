@@ -6,15 +6,13 @@ using UnityEngine.AI;
 
 public class CpuTankMovement : TankMovement {
     [HideInInspector] public GameObject targetObject;
-
-    private NavMeshAgent navMeshAgent;
+    [HideInInspector] public NavMeshAgent navMeshAgent;
     private float movingTime = 4;
     private float stoppingTime = 1;
 
     public override void Start() {
         base.Start();
         navMeshAgent = GetComponent<NavMeshAgent>();
-
         StartCoroutine(MovingLoop());
     }
 
@@ -29,7 +27,6 @@ public class CpuTankMovement : TankMovement {
             yield return StartCoroutine(Move());
             yield return StartCoroutine(Stop());
         }
-
     }
 
     private IEnumerator Move() {

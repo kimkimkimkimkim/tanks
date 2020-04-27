@@ -23,6 +23,7 @@ public class CpuTankManager : TankManager {
 
     private void SetTankShooting() {
         tankShooting = instance.GetComponent<CpuTankShooting>();
+        tankShooting.targetObject = playerTank;
     }
 
     private void SetMeshColor() {
