@@ -32,7 +32,7 @@ public class CpuTankShooting : TankShooting {
         RaycastHit hit;
         Debug.DrawRay(ray.origin, ray.direction * 30.0f, Color.red, 0.0f);
         if (Physics.Raycast(ray, out hit, 100.0f)) {
-            canSeePlayer = hit.collider.tag == "Player";
+            canSeePlayer = hit.collider.name == "PlayerTank(Clone)";
         }
     }
 

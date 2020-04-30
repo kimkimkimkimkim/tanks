@@ -59,4 +59,29 @@ public class PlayerTankManager : TankManager {
             renderers[i].material.color = tankColor;
         }
     }
+
+    public void DisableControl() {
+        tankMovement.enabled = false;
+        tankShooting.enabled = false;
+
+        //m_CanvasGameObject.SetActive(false);
+    }
+
+
+    public void EnableControl() {
+        tankMovement.enabled = true;
+        tankShooting.enabled = true;
+        //m_NavMeshAgent.isStopped = false;
+
+        //m_CanvasGameObject.SetActive(true);
+    }
+
+
+    public void Reset() {
+        instance.transform.position = spawnPoint.position;
+        instance.transform.rotation = spawnPoint.rotation;
+
+        instance.SetActive(false);
+        instance.SetActive(true);
+    }
 }

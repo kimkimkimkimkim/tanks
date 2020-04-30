@@ -33,4 +33,27 @@ public class CpuTankManager : TankManager {
             renderers[i].material.color = tankColor;
         }
     }
+
+    public void DisableControl() {
+        if (tankMovement.navMeshAgent) tankMovement.navMeshAgent.isStopped = true;
+        tankMovement.enableControle = false;
+        tankMovement.enabled = false;
+        tankShooting.enabled = false;
+    }
+
+
+    public void EnableControl() {
+        tankMovement.enableControle = true;
+        tankMovement.enabled = true;
+        tankShooting.enabled = true;
+    }
+
+
+    public void Reset() {
+        instance.transform.position = spawnPoint.position;
+        instance.transform.rotation = spawnPoint.rotation;
+
+        instance.SetActive(false);
+        instance.SetActive(true);
+    }
 }

@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class CpuTankMovement : TankMovement {
     [HideInInspector] public GameObject targetObject;
     [HideInInspector] public NavMeshAgent navMeshAgent;
+    [HideInInspector] public bool enableControle = true;
     private float movingTime = 4;
     private float stoppingTime = 1;
 
@@ -30,7 +31,7 @@ public class CpuTankMovement : TankMovement {
     }
 
     private IEnumerator Move() {
-        navMeshAgent.isStopped = false;
+        navMeshAgent.isStopped = (enableControle) ? false : true;
         yield return new WaitForSeconds(movingTime);
     }
 
