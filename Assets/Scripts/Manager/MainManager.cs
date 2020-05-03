@@ -1,4 +1,5 @@
-﻿using System.Collections;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,9 @@ public class MainManager : MonoBehaviour {
     public Button optionButton;
     public Button statsButton;
     public Button infoButton;
+    public GameObject stageSelectScrollView;
+    public GameObject stageSelectScrollContent;
+    public GameObject stageSelectScrollItemPrefab;
 
     void Start() {
         playButton.onClick.AsObservable()
@@ -20,6 +24,11 @@ public class MainManager : MonoBehaviour {
                 list.Add(statsButton.transform);
                 list.Add(infoButton.transform);
                 HideLeft(list);
+
+                var showList = new List<Transform>();
+                SetStageSelectScroll();
+                showList.Add(stageSelectScrollView.transform);
+                ShowLeft(showList);
             })
             .Subscribe();
 
@@ -40,10 +49,38 @@ public class MainManager : MonoBehaviour {
         foreach (Transform transform in transformList) {
             float x = transform.localPosition.x;
             float distance = 1218f;
-            float time = 1.5f;
+            float time = 1f;
             transform.DOLocalMoveX(x - distance, time)
-                .OnComplete(() => transform.gameObject.SetActive(false))
-                .SetEase(Ease.OutCubic);
+                .SetEase(Ease.OutCubic)
+                .OnComplete(() => {
+                    transform.gameObject.SetActive(false);
+                });
+        }
+    }
+
+    private void ShowLeft(List<Transform> transformList) {
+        foreach (Transform transform in transformList) {
+            float x = transform.localPosition.x;
+            float y = transform.localPosition.y;
+            float z = transform.localPosition.z;
+            float distance = 1218f;
+            float time = 1f;
+            transform.localPosition = new Vector3(x - distance,y,z);
+            transform.gameObject.SetActive(true);
+            transform.DOLocalMoveX(x,time)
+                .SetEase(Ease.InCubic)
+                .OnComplete(() => {
+
+                });
+        }
+    }
+
+    private void SetStageSelectScroll(){
+        int allStageNum = 33;
+        for(int i=0;i<allStageNum;i++){
+            GameObject stageSelectScrollItem = (GameObject)Instantiate(stageSelectScrollItemPrefab);
+            stageSelectScrollItem.transform.SetParent(stageSelectScrollContent.transform);
+            stageSelectScrollItem.transform.localScale = new Vector3(1,1,1);
         }
     }
 
