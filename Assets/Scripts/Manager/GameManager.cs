@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour {
     private int stageNumber = 0;
 
     private void Start() {
-        StartCoroutine(GameLoop());
     }
 
     private void SpawnAllTanks() {
@@ -47,6 +46,10 @@ public class GameManager : MonoBehaviour {
             cpuTanks[i].playerTank = playerTank.instance;
             cpuTanks[i].Setup();
         }
+    }
+
+    public void GameStart(){
+        StartCoroutine(GameLoop());
     }
 
     private IEnumerator GameLoop() {

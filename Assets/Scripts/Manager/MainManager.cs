@@ -16,6 +16,8 @@ public class MainManager : MonoBehaviour {
     public GameObject stageSelectScrollItemPrefab;
     public Button playButton;
     public Button backButtonInStageSelect;
+    public GameManager gameManager;
+    public GameObject titleCanvas;
 
     private float transitionTime = 0.3f;
 
@@ -69,6 +71,16 @@ public class MainManager : MonoBehaviour {
                 var fadeOutList = new List<Transform>();
                 fadeOutList.Add(playButton.transform);
                 fadeOutList.Add(backButtonInStageSelect.transform);
+                FadeOut(fadeOutList);
+            })
+            .Subscribe();
+
+        playButton.onClick.AsObservable()
+            .Do(_ => {
+                gameManager.GameStart();
+
+                var fadeOutList = new List<Transform>();
+                fadeOutList.Add(titleCanvas.transform);
                 FadeOut(fadeOutList);
             })
             .Subscribe();
@@ -132,6 +144,14 @@ public class MainManager : MonoBehaviour {
             GameObject stageSelectScrollItem = (GameObject)Instantiate(stageSelectScrollItemPrefab);
             stageSelectScrollItem.transform.SetParent(stageSelectScrollContent.transform);
             stageSelectScrollItem.transform.localScale = new Vector3(1,1,1);
+
+            Button button = stageSelectScrollItem.GetComponent<Button>();
+            Text text = stageSelectScrollItem.transform.GetChild(0).GetComponent<Text>();
+            Image lockIcon = stageSelectScrollItem.transform.GetChild(1).GetComponent<Image>();
+
+            button.interactable = (i == 0);
+            text.text = "LEVEL " + (i+1).ToString();
+            lockIcon.gameObject.SetActive(i!=0);
         }
     }
 

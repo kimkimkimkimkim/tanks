@@ -610,6 +610,8 @@ MonoBehaviour:
     type: 3}
   playButton: {fileID: 1727514820}
   backButtonInStageSelect: {fileID: 1685453229}
+  gameManager: {fileID: 1947234460}
+  titleCanvas: {fileID: 553266112}
 --- !u!4 &393899402
 Transform:
   m_ObjectHideFlags: 0
