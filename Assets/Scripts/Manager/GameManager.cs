@@ -19,11 +19,9 @@ public class GameManager : MonoBehaviour {
     public GameObject cpuTankPrefab;
     public GameObject playerTankPrefab;
     public PlayerTankManager playerTank;
+    public ResultScreenManager resultScreen;
     public CpuTankManager[] cpuTanks;
     public Text messageText;
-    public GameObject resultScreen;
-
-    private int stageNumber = 0;
 
     private void Start() {
     }
@@ -49,29 +47,28 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void GameStart() {
-        StartCoroutine(GameLoop());
+    public void GameStart(int stageNumber) {
+        StartCoroutine(GameLoop(stageNumber));
     }
 
-    private IEnumerator GameLoop() {
-        yield return StartCoroutine(RoundStarting());
+    private IEnumerator GameLoop(int stageNumber) {
+        yield return StartCoroutine(RoundStarting(stageNumber));
         yield return StartCoroutine(RoundPlaying());
         yield return StartCoroutine(RoundEnding());
 
         if (GetGameStatus() == GameStatus.PlayerLose) {
-            SceneManager.LoadScene(0);
+            resultScreen.SetScreen(0, stageNumber);
         } else {
-            StartCoroutine(GameLoop());
+            resultScreen.SetScreen(3, stageNumber);
         }
     }
 
 
-    private IEnumerator RoundStarting() {
+    private IEnumerator RoundStarting(int stageNumber) {
 
         ResetGame();
         DisableTankControl();
 
-        stageNumber++;
         messageText.text = "STAGE " + stageNumber;
 
         yield return new WaitForSeconds(startDelay);

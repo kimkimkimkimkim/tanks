@@ -1215,7 +1215,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &553266113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2178,6 +2178,7 @@ GameObject:
   - component: {fileID: 1121345788}
   - component: {fileID: 1121345790}
   - component: {fileID: 1121345789}
+  - component: {fileID: 1121345791}
   m_Layer: 5
   m_Name: ResultScreen
   m_TagString: Untagged
@@ -2245,6 +2246,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1121345787}
   m_CullTransparentMesh: 0
+--- !u!114 &1121345791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121345787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9852522e195b9a84ca709346b8e920bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 1947234460}
+  menuButton: {fileID: 144553053}
+  retryButton: {fileID: 1292749168}
+  nextButton: {fileID: 1230385867}
+  starIconContainer: {fileID: 1632733933}
+  onStarColor: {r: 0.8311912, g: 0.8396226, b: 0.32079923, a: 1}
+  offStarColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1209535754
 GameObject:
   m_ObjectHideFlags: 0
@@ -4412,6 +4432,7 @@ MonoBehaviour:
     offHealthColor: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 1}
     tankMovement: {fileID: 0}
     tankShooting: {fileID: 0}
+  resultScreen: {fileID: 1121345791}
   cpuTanks:
   - tankColor: {r: 0.69803923, g: 0.1764706, b: 0.16470589, a: 0}
     spawnPoint: {fileID: 1844563965}

@@ -19,7 +19,6 @@ public class MainManager : MonoBehaviour {
     public GameManager gameManager;
     public GameObject titleCanvas;
 
-    private float transitionTime = 0.3f;
     private List<StageData> clearStageDataList;
 
     void Start() {
@@ -34,17 +33,17 @@ public class MainManager : MonoBehaviour {
                 list.Add(optionButton.transform);
                 list.Add(statsButton.transform);
                 list.Add(infoButton.transform);
-                HideLeft(list);
+                UIAnimationManager.HideLeft(list);
 
                 var showList = new List<Transform>();
                 SetStageSelectScroll();
                 showList.Add(stageSelectScrollView.transform);
-                ShowLeft(showList);
+                UIAnimationManager.ShowLeft(showList);
 
                 var fadeInList = new List<Transform>();
                 fadeInList.Add(playButton.transform);
                 fadeInList.Add(backButtonInStageSelect.transform);
-                FadeIn(fadeInList);
+                UIAnimationManager.FadeIn(fadeInList);
             })
             .Subscribe();
 
@@ -67,26 +66,26 @@ public class MainManager : MonoBehaviour {
                 showList.Add(optionButton.transform);
                 showList.Add(statsButton.transform);
                 showList.Add(infoButton.transform);
-                ShowLeft(showList);
+                UIAnimationManager.ShowLeft(showList);
 
                 var hideList = new List<Transform>();
                 hideList.Add(stageSelectScrollView.transform);
-                HideLeft(hideList);
+                UIAnimationManager.HideLeft(hideList);
 
                 var fadeOutList = new List<Transform>();
                 fadeOutList.Add(playButton.transform);
                 fadeOutList.Add(backButtonInStageSelect.transform);
-                FadeOut(fadeOutList);
+                UIAnimationManager.FadeOut(fadeOutList);
             })
             .Subscribe();
 
         playButton.onClick.AsObservable()
             .Do(_ => {
-                gameManager.GameStart();
+                gameManager.GameStart(1);
 
                 var fadeOutList = new List<Transform>();
                 fadeOutList.Add(titleCanvas.transform);
-                FadeOut(fadeOutList);
+                UIAnimationManager.FadeOut(fadeOutList);
             })
             .Subscribe();
     }
@@ -102,58 +101,6 @@ public class MainManager : MonoBehaviour {
         clearStageDataList = SaveData.GetClassList(SaveDataKey.clearStageDataList, SaveDataDefaultValue.clearStageDataList);
         foreach (StageData stageData in clearStageDataList) {
             Debug.Log(stageData.number);
-        }
-    }
-
-    private void HideLeft(List<Transform> transformList) {
-        foreach (Transform transform in transformList) {
-            float x = transform.localPosition.x;
-            float y = transform.localPosition.y;
-            float z = transform.localPosition.z;
-            float distance = 1218f;
-            transform.DOLocalMoveX(x - distance, transitionTime)
-                .SetEase(Ease.OutCubic)
-                .OnComplete(() => {
-                    transform.gameObject.SetActive(false);
-                    transform.localPosition = new Vector3(x, y, z);
-                });
-        }
-    }
-
-    private void ShowLeft(List<Transform> transformList) {
-        foreach (Transform transform in transformList) {
-            float x = transform.localPosition.x;
-            float y = transform.localPosition.y;
-            float z = transform.localPosition.z;
-            float distance = 1218f;
-            transform.localPosition = new Vector3(x - distance, y, z);
-            transform.gameObject.SetActive(true);
-            transform.DOLocalMoveX(x, transitionTime)
-                .SetEase(Ease.InCubic)
-                .OnComplete(() => {
-
-                });
-        }
-    }
-
-    private void FadeIn(List<Transform> transformList) {
-        foreach (Transform transform in transformList) {
-            if (!transform.gameObject.GetComponent<CanvasGroup>()) transform.gameObject.AddComponent<CanvasGroup>();
-            transform.gameObject.SetActive(true);
-            transform.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            transform.gameObject.GetComponent<CanvasGroup>().DOFade(1, transitionTime).SetEase(Ease.InCubic);
-        }
-    }
-
-    private void FadeOut(List<Transform> transformList) {
-        foreach (Transform transform in transformList) {
-            if (!transform.gameObject.GetComponent<CanvasGroup>()) transform.gameObject.AddComponent<CanvasGroup>();
-            transform.gameObject.SetActive(true);
-            transform.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-            transform.gameObject.GetComponent<CanvasGroup>()
-                .DOFade(0, transitionTime)
-                .SetEase(Ease.InCubic)
-                .OnComplete(() => transform.gameObject.SetActive(false));
         }
     }
 
