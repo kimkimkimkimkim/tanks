@@ -20,8 +20,13 @@ public class MainManager : MonoBehaviour {
     public GameObject titleCanvas;
 
     private float transitionTime = 0.3f;
+    private List<StageData> clearStageDataList;
 
     void Start() {
+        SetSaveData();
+        GetSaveData();
+
+
         goToStageSelectButton.onClick.AsObservable()
             .Do(_ => {
                 var list = new List<Transform>();
@@ -86,6 +91,20 @@ public class MainManager : MonoBehaviour {
             .Subscribe();
     }
 
+    private void SetSaveData() {
+        List<StageData> list = new List<StageData> {
+            new StageData(1, 0)
+        };
+        SaveData.SetClassList(SaveDataKey.clearStageDataList, list);
+    }
+
+    private void GetSaveData() {
+        clearStageDataList = SaveData.GetClassList(SaveDataKey.clearStageDataList, SaveDataDefaultValue.clearStageDataList);
+        foreach (StageData stageData in clearStageDataList) {
+            Debug.Log(stageData.number);
+        }
+    }
+
     private void HideLeft(List<Transform> transformList) {
         foreach (Transform transform in transformList) {
             float x = transform.localPosition.x;
@@ -96,7 +115,7 @@ public class MainManager : MonoBehaviour {
                 .SetEase(Ease.OutCubic)
                 .OnComplete(() => {
                     transform.gameObject.SetActive(false);
-                    transform.localPosition = new Vector3(x,y,z);
+                    transform.localPosition = new Vector3(x, y, z);
                 });
         }
     }
@@ -107,9 +126,9 @@ public class MainManager : MonoBehaviour {
             float y = transform.localPosition.y;
             float z = transform.localPosition.z;
             float distance = 1218f;
-            transform.localPosition = new Vector3(x - distance,y,z);
+            transform.localPosition = new Vector3(x - distance, y, z);
             transform.gameObject.SetActive(true);
-            transform.DOLocalMoveX(x,transitionTime)
+            transform.DOLocalMoveX(x, transitionTime)
                 .SetEase(Ease.InCubic)
                 .OnComplete(() => {
 
@@ -119,39 +138,39 @@ public class MainManager : MonoBehaviour {
 
     private void FadeIn(List<Transform> transformList) {
         foreach (Transform transform in transformList) {
-            if(!transform.gameObject.GetComponent<CanvasGroup>())transform.gameObject.AddComponent<CanvasGroup>();
+            if (!transform.gameObject.GetComponent<CanvasGroup>()) transform.gameObject.AddComponent<CanvasGroup>();
             transform.gameObject.SetActive(true);
             transform.gameObject.GetComponent<CanvasGroup>().alpha = 0;
-            transform.gameObject.GetComponent<CanvasGroup>().DOFade(1,transitionTime).SetEase(Ease.InCubic);
+            transform.gameObject.GetComponent<CanvasGroup>().DOFade(1, transitionTime).SetEase(Ease.InCubic);
         }
     }
 
     private void FadeOut(List<Transform> transformList) {
-      foreach (Transform transform in transformList) {
-          if(!transform.gameObject.GetComponent<CanvasGroup>())transform.gameObject.AddComponent<CanvasGroup>();
-          transform.gameObject.SetActive(true);
-          transform.gameObject.GetComponent<CanvasGroup>().alpha = 1;
-          transform.gameObject.GetComponent<CanvasGroup>()
-              .DOFade(0,transitionTime)
-              .SetEase(Ease.InCubic)
-              .OnComplete(() => transform.gameObject.SetActive(false));
-      }
+        foreach (Transform transform in transformList) {
+            if (!transform.gameObject.GetComponent<CanvasGroup>()) transform.gameObject.AddComponent<CanvasGroup>();
+            transform.gameObject.SetActive(true);
+            transform.gameObject.GetComponent<CanvasGroup>().alpha = 1;
+            transform.gameObject.GetComponent<CanvasGroup>()
+                .DOFade(0, transitionTime)
+                .SetEase(Ease.InCubic)
+                .OnComplete(() => transform.gameObject.SetActive(false));
+        }
     }
 
-    private void SetStageSelectScroll(){
+    private void SetStageSelectScroll() {
         int allStageNum = 33;
-        for(int i=0;i<allStageNum;i++){
+        for (int i = 0; i < allStageNum; i++) {
             GameObject stageSelectScrollItem = (GameObject)Instantiate(stageSelectScrollItemPrefab);
             stageSelectScrollItem.transform.SetParent(stageSelectScrollContent.transform);
-            stageSelectScrollItem.transform.localScale = new Vector3(1,1,1);
+            stageSelectScrollItem.transform.localScale = new Vector3(1, 1, 1);
 
             Button button = stageSelectScrollItem.GetComponent<Button>();
             Text text = stageSelectScrollItem.transform.GetChild(0).GetComponent<Text>();
             Image lockIcon = stageSelectScrollItem.transform.GetChild(1).GetComponent<Image>();
 
             button.interactable = (i == 0);
-            text.text = "LEVEL " + (i+1).ToString();
-            lockIcon.gameObject.SetActive(i!=0);
+            text.text = "LEVEL " + (i + 1).ToString();
+            lockIcon.gameObject.SetActive(i != 0);
         }
     }
 

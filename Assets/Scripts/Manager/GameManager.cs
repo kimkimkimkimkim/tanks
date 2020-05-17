@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour {
     public PlayerTankManager playerTank;
     public CpuTankManager[] cpuTanks;
     public Text messageText;
+    public GameObject resultScreen;
 
     private int stageNumber = 0;
 
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public void GameStart(){
+    public void GameStart() {
         StartCoroutine(GameLoop());
     }
 

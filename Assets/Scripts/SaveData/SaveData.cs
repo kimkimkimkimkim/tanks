@@ -79,6 +79,7 @@ public class SaveData {
 
     /// <summary>
     /// 指定したキーとT型のクラスコレクションをセーブデータから取得します。
+    /// 作成したクラスには[Serializable]を付けてください。
     /// </summary>
     /// <typeparam name="T">ジェネリッククラス</typeparam>
     /// <param name="key">キー</param>
@@ -91,6 +92,7 @@ public class SaveData {
 
     /// <summary>
     /// 指定したキーとT型のクラスコレクションをセーブデータから取得します。
+    /// 作成したクラスには[Serializable]を付けてください。
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <param name="key"></param>
