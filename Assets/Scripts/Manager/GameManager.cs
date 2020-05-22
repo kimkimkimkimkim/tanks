@@ -19,11 +19,13 @@ public class GameManager : MonoBehaviour {
     public GameObject cpuTankPrefab;
     public GameObject playerTankPrefab;
     public PlayerTankManager playerTank;
-    public ResultScreenManager resultScreen;
     public CpuTankManager[] cpuTanks;
+    public List<GameObject> stagePrefabList;
     public Text messageText;
+    public ResultScreenManager resultScreen;
 
     private void Start() {
+
     }
 
     private void SpawnAllTanks() {
@@ -52,6 +54,7 @@ public class GameManager : MonoBehaviour {
     }
 
     private IEnumerator GameLoop(int stageNumber) {
+        SetStage(stageNumber);
         yield return StartCoroutine(RoundStarting(stageNumber));
         yield return StartCoroutine(RoundPlaying());
         yield return StartCoroutine(RoundEnding());
@@ -61,6 +64,12 @@ public class GameManager : MonoBehaviour {
         } else {
             resultScreen.SetScreen(3, stageNumber);
         }
+    }
+
+    private void SetStage(int stageNumber) {
+        GameObject stage = (GameObject)Instantiate(stagePrefabList[stageNumber - 1]);
+        stage.transform.position = new Vector3(0, 0, 0);
+        stage.transform.localScale = new Vector3(1, 1, 1);
     }
 
 
