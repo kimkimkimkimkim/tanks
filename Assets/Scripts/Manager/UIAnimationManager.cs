@@ -21,6 +21,21 @@ public class UIAnimationManager : MonoBehaviour {
         }
     }
 
+    public static void HideRight(List<Transform> transformList) {
+        foreach (Transform transform in transformList) {
+            float x = transform.localPosition.x;
+            float y = transform.localPosition.y;
+            float z = transform.localPosition.z;
+            float distance = 1218f;
+            transform.DOLocalMoveX(x + distance, transitionTime)
+                .SetEase(Ease.OutCubic)
+                .OnComplete(() => {
+                    transform.gameObject.SetActive(false);
+                    transform.localPosition = new Vector3(x, y, z);
+                });
+        }
+    }
+
     public static void ShowLeft(List<Transform> transformList) {
         foreach (Transform transform in transformList) {
             float x = transform.localPosition.x;
@@ -28,6 +43,22 @@ public class UIAnimationManager : MonoBehaviour {
             float z = transform.localPosition.z;
             float distance = 1218f;
             transform.localPosition = new Vector3(x - distance, y, z);
+            transform.gameObject.SetActive(true);
+            transform.DOLocalMoveX(x, transitionTime)
+                .SetEase(Ease.InCubic)
+                .OnComplete(() => {
+
+                });
+        }
+    }
+
+    public static void ShowRight(List<Transform> transformList) {
+        foreach (Transform transform in transformList) {
+            float x = transform.localPosition.x;
+            float y = transform.localPosition.y;
+            float z = transform.localPosition.z;
+            float distance = 1218f;
+            transform.localPosition = new Vector3(x + distance, y, z);
             transform.gameObject.SetActive(true);
             transform.DOLocalMoveX(x, transitionTime)
                 .SetEase(Ease.InCubic)

@@ -14,7 +14,7 @@ public enum GameStatus {
 public class GameManager : MonoBehaviour {
 
     public float startDelay = 3f;
-    public float endDelay = 3f;
+    public float endDelay = 0f;
     public MovementJoystick movementJoystick;
     public ShootingJoystick shootingJoystick;
     public GameObject cpuTankPrefab;

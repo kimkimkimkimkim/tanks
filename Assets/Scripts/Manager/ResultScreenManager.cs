@@ -63,6 +63,7 @@ public class ResultScreenManager : MonoBehaviour {
             }
         }
         SaveData.SetClassList(SaveDataKey.clearStageDataList, clearStageDataList);
+        SaveData.Save();
     }
 
     private void SetScore(int star) {

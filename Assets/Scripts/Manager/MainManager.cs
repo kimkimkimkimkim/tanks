@@ -18,11 +18,12 @@ public class MainManager : MonoBehaviour {
     public Button backButtonInStageSelect;
     public GameManager gameManager;
     public GameObject titleCanvas;
+    public Text selectedStageInfoText;
 
     private List<StageData> clearStageDataList;
+    private int selectedStageNum = 1;
 
     void Start() {
-        SetSaveData();
         GetSaveData();
 
 
@@ -39,6 +40,11 @@ public class MainManager : MonoBehaviour {
                 SetStageSelectScroll();
                 showList.Add(stageSelectScrollView.transform);
                 UIAnimationManager.ShowLeft(showList);
+
+                var showRightList = new List<Transform>();
+                SetSelectedStage(selectedStageNum);
+                showRightList.Add(selectedStageInfoText.transform);
+                UIAnimationManager.ShowRight(showRightList);
 
                 var fadeInList = new List<Transform>();
                 fadeInList.Add(playButton.transform);
@@ -72,6 +78,10 @@ public class MainManager : MonoBehaviour {
                 hideList.Add(stageSelectScrollView.transform);
                 UIAnimationManager.HideLeft(hideList);
 
+                var hideRightList = new List<Transform>();
+                hideRightList.Add(selectedStageInfoText.transform);
+                UIAnimationManager.HideRight(hideRightList);
+
                 var fadeOutList = new List<Transform>();
                 fadeOutList.Add(playButton.transform);
                 fadeOutList.Add(backButtonInStageSelect.transform);
@@ -81,7 +91,7 @@ public class MainManager : MonoBehaviour {
 
         playButton.onClick.AsObservable()
             .Do(_ => {
-                gameManager.GameStart(1);
+                PlayGame();
 
                 var fadeOutList = new List<Transform>();
                 fadeOutList.Add(titleCanvas.transform);
@@ -90,18 +100,20 @@ public class MainManager : MonoBehaviour {
             .Subscribe();
     }
 
-    private void SetSaveData() {
-        List<StageData> list = new List<StageData> {
-            new StageData(1, 0)
-        };
-        SaveData.SetClassList(SaveDataKey.clearStageDataList, list);
+    private void PlayGame() {
+        gameManager.GameStart(selectedStageNum);
     }
 
     private void GetSaveData() {
         clearStageDataList = SaveData.GetClassList(SaveDataKey.clearStageDataList, SaveDataDefaultValue.clearStageDataList);
-        foreach (StageData stageData in clearStageDataList) {
-            Debug.Log(stageData.number);
-        }
+        SetSelectedStage(clearStageDataList.Count + 1);
+    }
+
+    private void SetSelectedStage(int stageNum) {
+        if (stageNum > gameManager.stagePrefabList.Count) stageNum = gameManager.stagePrefabList.Count;
+        selectedStageNum = stageNum;
+
+        selectedStageInfoText.text = "LEVEL " + stageNum;
     }
 
     private void SetStageSelectScroll() {
@@ -112,13 +124,13 @@ public class MainManager : MonoBehaviour {
             stageSelectScrollItem.transform.localScale = new Vector3(1, 1, 1);
 
             bool isCleared = i <= clearStageDataList.Count;
-            Button button = stageSelectScrollItem.GetComponent<Button>();
-            Text text = stageSelectScrollItem.transform.GetChild(0).GetComponent<Text>();
-            Image lockIcon = stageSelectScrollItem.transform.GetChild(1).GetComponent<Image>();
+            var scrollItem = stageSelectScrollItem.GetComponent<StageSelectScrollItemManager>();
+            var stageNum = i + 1;
 
-            button.interactable = isCleared;
-            text.text = "LEVEL " + (i + 1).ToString();
-            lockIcon.gameObject.SetActive(!isCleared);
+            scrollItem.SetButtonInteractive(isCleared);
+            scrollItem.SetText("LEVEL " + stageNum.ToString());
+            scrollItem.ShowLockIcon(!isCleared);
+            scrollItem.SetOnClickAction(() => SetSelectedStage(stageNum));
         }
     }
 
