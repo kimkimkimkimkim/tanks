@@ -105,19 +105,20 @@ public class MainManager : MonoBehaviour {
     }
 
     private void SetStageSelectScroll() {
-        int allStageNum = 33;
+        int allStageNum = gameManager.stagePrefabList.Count;
         for (int i = 0; i < allStageNum; i++) {
             GameObject stageSelectScrollItem = (GameObject)Instantiate(stageSelectScrollItemPrefab);
             stageSelectScrollItem.transform.SetParent(stageSelectScrollContent.transform);
             stageSelectScrollItem.transform.localScale = new Vector3(1, 1, 1);
 
+            bool isCleared = i <= clearStageDataList.Count;
             Button button = stageSelectScrollItem.GetComponent<Button>();
             Text text = stageSelectScrollItem.transform.GetChild(0).GetComponent<Text>();
             Image lockIcon = stageSelectScrollItem.transform.GetChild(1).GetComponent<Image>();
 
-            button.interactable = (i == 0);
+            button.interactable = isCleared;
             text.text = "LEVEL " + (i + 1).ToString();
-            lockIcon.gameObject.SetActive(i != 0);
+            lockIcon.gameObject.SetActive(!isCleared);
         }
     }
 

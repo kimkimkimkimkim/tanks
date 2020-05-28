@@ -5,6 +5,7 @@ using UnityEngine;
 
 [Serializable]
 public class CpuTankManager : TankManager {
+    public Transform spawnPoint;
     [HideInInspector] public GameObject playerTank;
     [HideInInspector] public CpuTankMovement tankMovement;
     [HideInInspector] public CpuTankShooting tankShooting;
@@ -28,9 +29,18 @@ public class CpuTankManager : TankManager {
 
     private void SetMeshColor() {
         MeshRenderer[] renderers = instance.GetComponentsInChildren<MeshRenderer>();
-
+        Color color = GetTankColor();
         for (int i = 0; i < renderers.Length; i++) {
-            renderers[i].material.color = tankColor;
+            renderers[i].material.color = new Color(178, 42, 54, 255);
+        }
+    }
+
+    private Color GetTankColor() {
+        switch (tankType) {
+            case TankType.CPU1:
+                return new Color(178, 42, 54);
+            default:
+                return new Color(42, 100, 178);
         }
     }
 

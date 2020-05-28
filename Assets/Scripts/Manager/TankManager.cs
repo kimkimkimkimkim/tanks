@@ -10,8 +10,6 @@ public enum TankType {
 
 [Serializable]
 public class TankManager {
-    public Color tankColor;
-    public Transform spawnPoint;
     public TankType tankType;
     [HideInInspector] public GameObject instance;
 }

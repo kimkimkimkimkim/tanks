@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 [Serializable]
 public class PlayerTankManager : TankManager {
+    public Color tankColor;
     public MovementJoystick movementJoystick;
     public ShootingJoystick shootingJoystick;
     public GameObject healthImageContainer;
     public Color onHealthColor;
     public Color offHealthColor;
+    [HideInInspector] public Transform spawnPoint;
     [HideInInspector] public PlayerTankMovement tankMovement;
     [HideInInspector] public PlayerTankShooting tankShooting;
 

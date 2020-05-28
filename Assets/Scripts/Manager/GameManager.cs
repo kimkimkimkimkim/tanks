@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public enum GameStatus {
@@ -19,43 +20,25 @@ public class GameManager : MonoBehaviour {
     public GameObject cpuTankPrefab;
     public GameObject playerTankPrefab;
     public PlayerTankManager playerTank;
-    public CpuTankManager[] cpuTanks;
+    private CpuTankManager[] cpuTanks;
     public List<GameObject> stagePrefabList;
     public Text messageText;
     public ResultScreenManager resultScreen;
+    public NavMeshSurface navMeshSurface;
+
+    private int stageNumber;
 
     private void Start() {
 
     }
 
-    private void SpawnAllTanks() {
-        SpawnPlayerTank();
-        SpawnCpuTanks();
-    }
-
-    private void SpawnPlayerTank() {
-        GameObject tank = Instantiate(playerTankPrefab, playerTank.spawnPoint.position, playerTank.spawnPoint.rotation) as GameObject;
-        playerTank.instance = tank;
-        playerTank.Setup();
-    }
-
-    private void SpawnCpuTanks() {
-        for (int i = 0; i < cpuTanks.Length; i++) {
-            GameObject tank = Instantiate(cpuTankPrefab, cpuTanks[i].spawnPoint.position, cpuTanks[i].spawnPoint.rotation) as GameObject;
-            cpuTanks[i].instance = tank;
-            cpuTanks[i].tankType = TankType.CPU1;
-            cpuTanks[i].playerTank = playerTank.instance;
-            cpuTanks[i].Setup();
-        }
-    }
-
     public void GameStart(int stageNumber) {
-        StartCoroutine(GameLoop(stageNumber));
+        this.stageNumber = stageNumber;
+        StartCoroutine(GameLoop());
     }
 
-    private IEnumerator GameLoop(int stageNumber) {
-        SetStage(stageNumber);
-        yield return StartCoroutine(RoundStarting(stageNumber));
+    private IEnumerator GameLoop() {
+        yield return StartCoroutine(RoundStarting());
         yield return StartCoroutine(RoundPlaying());
         yield return StartCoroutine(RoundEnding());
 
@@ -66,14 +49,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void SetStage(int stageNumber) {
-        GameObject stage = (GameObject)Instantiate(stagePrefabList[stageNumber - 1]);
-        stage.transform.position = new Vector3(0, 0, 0);
-        stage.transform.localScale = new Vector3(1, 1, 1);
-    }
-
-
-    private IEnumerator RoundStarting(int stageNumber) {
+    private IEnumerator RoundStarting() {
 
         ResetGame();
         DisableTankControl();
@@ -85,6 +61,7 @@ public class GameManager : MonoBehaviour {
 
 
     private IEnumerator RoundPlaying() {
+        navMeshSurface.BuildNavMesh();
         EnableTankControl();
 
         messageText.text = "";
@@ -100,11 +77,19 @@ public class GameManager : MonoBehaviour {
     private IEnumerator RoundEnding() {
 
         DisableTankControl();
+        HideShells();
 
         string message = EndMessage();
         messageText.text = message;
 
         yield return new WaitForSeconds(endDelay);
+    }
+
+    private void HideShells() {
+        GameObject[] objects = GameObject.FindGameObjectsWithTag("HideTarget");
+        foreach (GameObject obj in objects) {
+            Destroy(obj);
+        }
     }
 
     private GameStatus GetGameStatus() {
@@ -139,13 +124,50 @@ public class GameManager : MonoBehaviour {
 
     private void ResetGame() {
 
+        GameObject[] stages = GameObject.FindGameObjectsWithTag("Stage");
+        foreach (GameObject stage in stages) {
+            Destroy(stage);
+        }
+
         GameObject[] objects = GameObject.FindGameObjectsWithTag("ResetTarget");
         foreach (GameObject obj in objects) {
             Destroy(obj);
         }
 
-        SpawnAllTanks();
+        SetStage();
     }
+
+    private void SetStage() {
+        GameObject stage = (GameObject)Instantiate(stagePrefabList[stageNumber - 1]);
+        stage.transform.SetParent(navMeshSurface.transform);
+        stage.transform.position = new Vector3(0, 0, 0);
+        stage.transform.localScale = new Vector3(1, 1, 1);
+
+        cpuTanks = stage.GetComponent<StageManager>().SetTanks(playerTankPrefab, playerTank, cpuTankPrefab);
+    }
+
+    /*
+    private void SpawnAllTanks() {
+        SpawnPlayerTank();
+        SpawnCpuTanks();
+    }
+
+    private void SpawnPlayerTank() {
+        GameObject tank = Instantiate(playerTankPrefab, playerTank.spawnPoint.position, playerTank.spawnPoint.rotation) as GameObject;
+        playerTank.instance = tank;
+        playerTank.Setup();
+    }
+
+    private void SpawnCpuTanks() {
+        for (int i = 0; i < cpuTanks.Length; i++) {
+            GameObject tank = Instantiate(cpuTankPrefab, cpuTanks[i].spawnPoint.position, cpuTanks[i].spawnPoint.rotation) as GameObject;
+            cpuTanks[i].instance = tank;
+            cpuTanks[i].tankType = TankType.CPU1;
+            cpuTanks[i].playerTank = playerTank.instance;
+            cpuTanks[i].Setup();
+        }
+    }
+    */
 
 
     private void EnableTankControl() {
