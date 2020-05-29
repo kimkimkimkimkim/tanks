@@ -64,7 +64,7 @@ public class PlayerTankManager : TankManager {
 
     public void DisableControl() {
         tankMovement.enabled = false;
-        tankShooting.enabled = false;
+        shootingJoystick.enabled = false;
 
         //m_CanvasGameObject.SetActive(false);
     }
@@ -72,7 +72,7 @@ public class PlayerTankManager : TankManager {
 
     public void EnableControl() {
         tankMovement.enabled = true;
-        tankShooting.enabled = true;
+        shootingJoystick.enabled = true;
         //m_NavMeshAgent.isStopped = false;
 
         //m_CanvasGameObject.SetActive(true);
