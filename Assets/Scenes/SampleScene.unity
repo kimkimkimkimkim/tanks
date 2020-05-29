@@ -1907,7 +1907,7 @@ MonoBehaviour:
   nextButton: {fileID: 1230385867}
   starIconContainer: {fileID: 1632733933}
   onStarColor: {r: 0.8311912, g: 0.8396226, b: 0.32079923, a: 1}
-  offStarColor: {r: 1, g: 1, b: 1, a: 1}
+  offStarColor: {r: 0.735849, g: 0.735849, b: 0.735849, a: 1}
 --- !u!1 &1230385865
 GameObject:
   m_ObjectHideFlags: 0

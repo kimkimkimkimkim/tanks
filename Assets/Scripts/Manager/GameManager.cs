@@ -42,11 +42,9 @@ public class GameManager : MonoBehaviour {
         yield return StartCoroutine(RoundPlaying());
         yield return StartCoroutine(RoundEnding());
 
-        if (GetGameStatus() == GameStatus.PlayerLose) {
-            resultScreen.SetScreen(0, stageNumber);
-        } else {
-            resultScreen.SetScreen(3, stageNumber);
-        }
+        var score = playerTank.instance.GetComponent<TankHealth>().currentHealth;
+        Debug.Log(score);
+        resultScreen.SetScreen(score, stageNumber);
     }
 
     private IEnumerator RoundStarting() {
