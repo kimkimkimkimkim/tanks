@@ -31,14 +31,14 @@ public class CpuTankManager : TankManager {
         MeshRenderer[] renderers = instance.GetComponentsInChildren<MeshRenderer>();
         Color color = GetTankColor();
         for (int i = 0; i < renderers.Length; i++) {
-            renderers[i].material.color = new Color(178, 42, 54, 255);
+            renderers[i].material.color = color;
         }
     }
 
     private Color GetTankColor() {
         switch (tankType) {
             case TankType.CPU1:
-                return new Color(178, 42, 54);
+                return new Color(0.6980392f, 0.1647059f, 0.2117647f);
             default:
                 return new Color(42, 100, 178);
         }
