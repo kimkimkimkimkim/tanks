@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
     public MovementJoystick movementJoystick;
     public ShootingJoystick shootingJoystick;
     public GameObject cpuTankPrefab;
+    public GameObject cpuTankMovementLandMarkPrefab;
     public GameObject playerTankPrefab;
     public PlayerTankManager playerTank;
     private CpuTankManager[] cpuTanks;
@@ -43,7 +44,6 @@ public class GameManager : MonoBehaviour {
         yield return StartCoroutine(RoundEnding());
 
         var score = playerTank.instance.GetComponent<TankHealth>().currentHealth;
-        Debug.Log(score);
         resultScreen.SetScreen(score, stageNumber);
     }
 
@@ -141,7 +141,7 @@ public class GameManager : MonoBehaviour {
         stage.transform.position = new Vector3(0, 0, 0);
         stage.transform.localScale = new Vector3(1, 1, 1);
 
-        cpuTanks = stage.GetComponent<StageManager>().SetTanks(playerTankPrefab, playerTank, cpuTankPrefab);
+        cpuTanks = stage.GetComponent<StageManager>().SetTanks(playerTankPrefab, playerTank, cpuTankPrefab, cpuTankMovementLandMarkPrefab);
     }
 
     private void EnableTankControl() {

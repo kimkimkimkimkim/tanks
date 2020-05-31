@@ -7,6 +7,7 @@ using UnityEngine;
 public class CpuTankManager : TankManager {
     public Transform spawnPoint;
     [HideInInspector] public GameObject playerTank;
+    [HideInInspector] public GameObject tankMovementLandMark;
     [HideInInspector] public CpuTankMovement tankMovement;
     [HideInInspector] public CpuTankShooting tankShooting;
 
@@ -19,7 +20,7 @@ public class CpuTankManager : TankManager {
 
     private void SetTankMovement() {
         tankMovement = instance.GetComponent<CpuTankMovement>();
-        tankMovement.targetObject = playerTank;
+        tankMovement.targetObject = tankMovementLandMark;
     }
 
     private void SetTankShooting() {
@@ -45,15 +46,14 @@ public class CpuTankManager : TankManager {
     }
 
     public void DisableControl() {
-        if (tankMovement.navMeshAgent) tankMovement.navMeshAgent.isStopped = true;
-        tankMovement.enableControle = false;
+        tankMovementLandMark.GetComponent<CpuTankMovementLandMark>().canMove = false;
         tankMovement.enabled = false;
         tankShooting.enabled = false;
     }
 
 
     public void EnableControl() {
-        tankMovement.enableControle = true;
+        tankMovementLandMark.GetComponent<CpuTankMovementLandMark>().canMove = true;
         tankMovement.enabled = true;
         tankShooting.enabled = true;
     }

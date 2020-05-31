@@ -7,7 +7,6 @@ public class CpuTankShooting : TankShooting {
 
     private bool canSeePlayer = false; //プレイヤーに射線が通っているかどうか
     private float fireFrequency = 4f;
-    private bool isFire = false;
     private float time = 0f;
 
     private void Start() {
