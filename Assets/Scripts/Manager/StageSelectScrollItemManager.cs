@@ -9,6 +9,9 @@ public class StageSelectScrollItemManager : MonoBehaviour {
     public Button button;
     public Text text;
     public Image lockIcon;
+    public Image background;
+    public Color selectedColor;
+    public Color unSelectedColor;
 
     public void SetButtonInteractive(bool isInteractive) {
         button.interactable = isInteractive;
@@ -20,6 +23,10 @@ public class StageSelectScrollItemManager : MonoBehaviour {
 
     public void ShowLockIcon(bool isShow) {
         lockIcon.gameObject.SetActive(isShow);
+    }
+
+    public void SetBackgroundColor(bool isSelected) {
+        background.color = (isSelected) ? selectedColor : unSelectedColor;
     }
 
     public void SetOnClickAction(Action collbackAction) {

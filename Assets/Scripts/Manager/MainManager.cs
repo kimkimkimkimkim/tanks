@@ -114,6 +114,11 @@ public class MainManager : MonoBehaviour {
         selectedStageNum = stageNum;
 
         selectedStageInfoText.text = "LEVEL " + stageNum;
+
+        for (int i = 0; i < stageSelectScrollContent.transform.childCount; i++) {
+            var scrollItem = stageSelectScrollContent.transform.GetChild(i).GetComponent<StageSelectScrollItemManager>();
+            scrollItem.SetBackgroundColor((i + 1) == selectedStageNum);
+        }
     }
 
     private void SetStageSelectScroll() {
@@ -130,6 +135,7 @@ public class MainManager : MonoBehaviour {
             scrollItem.SetButtonInteractive(isCleared);
             scrollItem.SetText("LEVEL " + stageNum.ToString());
             scrollItem.ShowLockIcon(!isCleared);
+            scrollItem.SetBackgroundColor(selectedStageNum == stageNum);
             scrollItem.SetOnClickAction(() => SetSelectedStage(stageNum));
         }
     }
