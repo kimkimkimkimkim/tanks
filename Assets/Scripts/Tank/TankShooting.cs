@@ -14,5 +14,6 @@ public class TankShooting : MonoBehaviour {
         Rigidbody shell = Instantiate(shellPrefab, fireTransform.position, fireTransform.rotation);
 
         shell.velocity = launchForce * fireTransform.forward;
+        shell.GetComponent<ShellManager>().ownerTankType = tankType;
     }
 }

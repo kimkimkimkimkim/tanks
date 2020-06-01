@@ -7,6 +7,7 @@ public class ShellManager : MonoBehaviour {
     public int damage;
     public float maxLifeTime;
     public int reflectionNum; //1回反射して2回目の衝突で爆発
+    [HideInInspector] public TankType ownerTankType;
 
     private Rigidbody myRigidbody;
     private int currentReflectionNum = 0;
@@ -28,8 +29,14 @@ public class ShellManager : MonoBehaviour {
 
     private void OnTriggerEnter(Collider collider) {
         if (collider.GetComponent<Rigidbody>()) {
-            //tankとの衝突
-            Explosion(collider);
+            if (collider.GetComponent<ShellManager>() == null) {
+                //tankとの衝突
+                HitWithTank(collider);
+            } else {
+                //shellとの衝突
+                HitWithShell(collider);
+            }
+
         } else {
             //壁との衝突
             if (currentReflectionNum < reflectionNum) {
@@ -45,6 +52,26 @@ public class ShellManager : MonoBehaviour {
         Vector3 reflect = Vector3.Reflect(transform.forward, normal);
         transform.LookAt(transform.position + reflect);
         myRigidbody.velocity = myRigidbody.velocity.magnitude * reflect;
+    }
+
+    private void HitWithTank(Collider collider) {
+        bool isPlayer = collider.GetComponent<PlayerTankMovement>() != null;
+
+        if (isPlayer && ownerTankType != TankType.Player) {
+            Explosion(collider);
+        } else if (!isPlayer && ownerTankType == TankType.Player) {
+            Explosion(collider);
+        }
+    }
+
+    private void HitWithShell(Collider collider) {
+        bool isPlayer = collider.GetComponent<ShellManager>().ownerTankType == TankType.Player;
+
+        if (isPlayer && ownerTankType != TankType.Player) {
+            Explosion(collider);
+        } else if (!isPlayer && ownerTankType == TankType.Player) {
+            Explosion(collider);
+        }
     }
 
     private void Explosion(Collider collider) {

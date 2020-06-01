@@ -44,6 +44,7 @@ public class PlayerTankManager : TankManager {
     private void SetTankshooting() {
         tankShooting = instance.GetComponent<PlayerTankShooting>();
         tankShooting.shootingJoystick = shootingJoystick;
+        tankShooting.tankType = tankType;
         shootingJoystick.tankShooting = (PlayerTankShooting)tankShooting;
     }
 
