@@ -9,30 +9,24 @@ public class ShootingJoystick : Joystick {
     public GameManager gameManager;
     [HideInInspector] public PlayerTankShooting tankShooting;
 
-    private float inactiveAlpha = 1f;
-    private float activeAlpha = 1f;
-    private float screenWidth;
     private Vector3 iniPos;
 
     protected override void Start() {
+        background.SetAnchorWithKeepingPosition(0, 0);
+        iniPos = background.position;
         base.Start();
-        GetComponent<CanvasGroup>().alpha = inactiveAlpha;
-        screenWidth = Screen.width;
-        iniPos = transform.position;
     }
 
     public override void OnPointerDown(PointerEventData eventData) {
-        base.OnPointerDown(eventData);
-        GetComponent<CanvasGroup>().alpha = activeAlpha;
+        background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
         tankShooting.changeAimImageEnabled(true);
-        //transform.position = eventData.position;
+        base.OnPointerDown(eventData);
     }
 
     public override void OnPointerUp(PointerEventData eventData) {
-        base.OnPointerUp(eventData);
-        GetComponent<CanvasGroup>().alpha = inactiveAlpha;
+        background.position = iniPos;
         tankShooting.changeAimImageEnabled(false);
-        //transform.position = iniPos;
         tankShooting.Fire();
+        base.OnPointerUp(eventData);
     }
 }

@@ -10,22 +10,31 @@ public class MovementJoystick : Joystick {
     private float screenWidth;
     private Vector3 iniPos;
 
+    public float MoveThreshold { get { return moveThreshold; } set { moveThreshold = Mathf.Abs(value); } }
+
+    [SerializeField] private float moveThreshold = 1;
+
     protected override void Start() {
+        MoveThreshold = moveThreshold;
+        iniPos = background.position;
         base.Start();
-        GetComponent<CanvasGroup>().alpha = inactiveAlpha;
-        screenWidth = Screen.width;
-        iniPos = transform.position;
     }
 
     public override void OnPointerDown(PointerEventData eventData) {
+        background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
         base.OnPointerDown(eventData);
-        GetComponent<CanvasGroup>().alpha = activeAlpha;
-        //transform.position = eventData.position;
     }
 
     public override void OnPointerUp(PointerEventData eventData) {
+        background.position = iniPos;
         base.OnPointerUp(eventData);
-        GetComponent<CanvasGroup>().alpha = inactiveAlpha;
-        //transform.position = iniPos;
+    }
+
+    protected override void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam) {
+        if (magnitude > moveThreshold) {
+            Vector2 difference = normalised * (magnitude - moveThreshold) * radius;
+            background.anchoredPosition += difference;
+        }
+        base.HandleInput(magnitude, normalised, radius, cam);
     }
 }
