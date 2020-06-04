@@ -7,19 +7,12 @@ public class PlayerTankShooting : TankShooting {
 
     public Image aimImage;
 
-    private void FixedUpdate() {
-        JoystickTurn();
-    }
-
-    private void JoystickTurn() {
-        Vector3 vector = shootingJoystick.Direction;
+    public void TurnTank(Vector3 vector) {
         vector = new Vector3(vector.x, 0, vector.y);
-
-        if (vector == Vector3.zero) return;
         tankTurret.transform.rotation = Quaternion.LookRotation(vector); //向きを変更する
     }
 
-    public void changeAimImageEnabled(bool enabled) {
+    public void ChangeAimImageEnabled(bool enabled) {
         aimImage.enabled = enabled;
     }
 }
