@@ -54,7 +54,7 @@ public class ShootingJoystick : Joystick {
     }
 
     private void AutoFire() {
-        tankShooting.Fire();
+        tankShooting.AutoFire();
     }
 
     private void ManualFire() {

@@ -8,10 +8,9 @@ public class StageManager : MonoBehaviour {
     public CpuTankManager[] cpuTankList;
 
     public CpuTankManager[] SetTanks(GameObject playerTankPrefab, PlayerTankManager playerTank, GameObject cpuTankPrefab, GameObject cpuTankMovementLandMarkPrefab) {
+
         //player
         GameObject player = (GameObject)Instantiate(playerTankPrefab, playerPosition.position, playerPosition.rotation);
-        playerTank.instance = player;
-        playerTank.Setup();
 
         //cpu
         for (int i = 0; i < cpuTankList.Length; i++) {
@@ -24,6 +23,10 @@ public class StageManager : MonoBehaviour {
             cpuTankList[i].tankMovementLandMark = landMark;
             cpuTankList[i].Setup();
         }
+
+        playerTank.instance = player;
+        playerTank.cpuTankList = cpuTankList;
+        playerTank.Setup();
 
         return cpuTankList;
     }

@@ -80,7 +80,6 @@ public class CpuTankMovement : TankMovement {
             RaycastHit hit;
             Debug.DrawRay(ray.origin, ray.direction * (landMarkPos - targetPos).magnitude, Color.green, 1.0f);
             if (Physics.Raycast(ray, out hit, (landMarkPos - targetPos).magnitude)) {
-                Debug.Log(hit.collider.name);
                 existsObject = hit.collider.name == "Wall";
             } else {
                 //何にもぶつからない

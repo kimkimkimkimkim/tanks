@@ -15,6 +15,7 @@ public class PlayerTankManager : TankManager {
     [HideInInspector] public Transform spawnPoint;
     [HideInInspector] public PlayerTankMovement tankMovement;
     [HideInInspector] public PlayerTankShooting tankShooting;
+    [HideInInspector] public CpuTankManager[] cpuTankList;
 
     public void Setup() {
         SetTankMovement();
@@ -45,6 +46,7 @@ public class PlayerTankManager : TankManager {
         tankShooting = instance.GetComponent<PlayerTankShooting>();
         tankShooting.shootingJoystick = shootingJoystick;
         tankShooting.tankType = tankType;
+        tankShooting.cpuTankList = cpuTankList;
         shootingJoystick.tankShooting = (PlayerTankShooting)tankShooting;
     }
 
