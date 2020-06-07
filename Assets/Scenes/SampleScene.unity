@@ -844,6 +844,13 @@ MonoBehaviour:
   gameManager: {fileID: 1947234460}
   titleCanvas: {fileID: 553266112}
   selectedStageInfoText: {fileID: 791747667}
+  backgroundSprite: {fileID: 21300000, guid: 2a9c1e72197b040c994eb20401f85128, type: 3}
+  background: {fileID: 2044683324}
+  camera: {fileID: 963194228}
+  cameraPosDefault: {x: 0, y: 20, z: -5.9}
+  cameraPosStageSelect: {x: -7.4, y: 30.7, z: -6.48}
+  uiCanvas: {fileID: 1396066059}
+  messageCanvas: {fileID: 1872757480}
 --- !u!4 &393899402
 Transform:
   m_ObjectHideFlags: 0
@@ -2215,7 +2222,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.254717, g: 0.254717, b: 0.254717, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -4080,6 +4087,7 @@ MonoBehaviour:
     spawnPoint: {fileID: 0}
     tankMovement: {fileID: 0}
     tankShooting: {fileID: 0}
+    cpuTankList: []
   stagePrefabList:
   - {fileID: 3641576656000520454, guid: 69aff75a4a2eab7408d4d6f83f368ad6, type: 3}
   - {fileID: 459012862606246523, guid: 35966dad1f0248e4d9cf47708f9696ab, type: 3}
@@ -4216,7 +4224,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2067434288}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0517138, y: 27.443657, z: -11.13069}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour {
     private IEnumerator RoundStarting() {
 
         ResetGame();
+        SetStage(stageNumber);
         DisableTankControl();
 
         messageText.text = "STAGE " + stageNumber;
@@ -120,7 +121,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    private void ResetGame() {
+    public void ResetGame() {
 
         GameObject[] stages = GameObject.FindGameObjectsWithTag("Stage");
         foreach (GameObject stage in stages) {
@@ -132,16 +133,26 @@ public class GameManager : MonoBehaviour {
             Destroy(obj);
         }
 
-        SetStage();
     }
 
-    private void SetStage() {
-        GameObject stage = (GameObject)Instantiate(stagePrefabList[stageNumber - 1]);
+    private void SetStage(int stageNum) {
+        GameObject stage = (GameObject)Instantiate(stagePrefabList[stageNum - 1]);
         stage.transform.SetParent(navMeshSurface.transform);
         stage.transform.position = new Vector3(0, 0, 0);
         stage.transform.localScale = new Vector3(1, 1, 1);
 
         cpuTanks = stage.GetComponent<StageManager>().SetTanks(playerTankPrefab, playerTank, cpuTankPrefab, cpuTankMovementLandMarkPrefab);
+    }
+
+    public void SetStageForStageSelect(int stageNum){
+      GameObject stage = (GameObject)Instantiate(stagePrefabList[stageNum - 1]);
+      stage.transform.SetParent(navMeshSurface.transform);
+      stage.transform.position = new Vector3(0, 0, 0);
+      stage.transform.localScale = new Vector3(1, 1, 1);
+
+      cpuTanks = stage.GetComponent<StageManager>().SetTanks(playerTankPrefab, playerTank, cpuTankPrefab, cpuTankMovementLandMarkPrefab);
+
+      DisableTankControl();
     }
 
     private void EnableTankControl() {

@@ -21,7 +21,7 @@ public class ResultScreenManager : MonoBehaviour {
 
         SetSaveData(star, stageNumber);
         SetScore(star);
-        ShowNextButton(stageNumber);
+        ShowNextButton(star,stageNumber);
 
         menuButton.onClick.AsObservable()
             .Do(_ => { })
@@ -73,8 +73,8 @@ public class ResultScreenManager : MonoBehaviour {
         }
     }
 
-    private void ShowNextButton(int stageNumber) {
-        bool isShow = stageNumber != gameManager.stagePrefabList.Count;
+    private void ShowNextButton(int star, int stageNumber) {
+        bool isShow = star != 0 && stageNumber != gameManager.stagePrefabList.Count;
         nextButton.gameObject.SetActive(isShow);
     }
 }

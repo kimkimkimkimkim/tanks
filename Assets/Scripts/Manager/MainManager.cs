@@ -6,6 +6,11 @@ using UnityEngine.UI;
 using UniRx;
 using DG.Tweening;
 
+public enum UIMode {
+    Default,
+    StageSelect,
+}
+
 public class MainManager : MonoBehaviour {
     public Button goToStageSelectButton;
     public Button optionButton;
@@ -19,13 +24,20 @@ public class MainManager : MonoBehaviour {
     public GameManager gameManager;
     public GameObject titleCanvas;
     public Text selectedStageInfoText;
+    public Sprite backgroundSprite;
+    public Image background;
+    public Transform camera;
+    public Vector3 cameraPosDefault;
+    public Vector3 cameraPosStageSelect;
+    public GameObject uiCanvas;
+    public GameObject messageCanvas;
 
     private List<StageData> clearStageDataList;
     private int selectedStageNum = 1;
 
     void Start() {
         GetSaveData();
-
+        background.sprite = null;
 
         goToStageSelectButton.onClick.AsObservable()
             .Do(_ => {
@@ -50,6 +62,8 @@ public class MainManager : MonoBehaviour {
                 fadeInList.Add(playButton.transform);
                 fadeInList.Add(backButtonInStageSelect.transform);
                 UIAnimationManager.FadeIn(fadeInList);
+
+                SetUIMode(UIMode.StageSelect);
             })
             .Subscribe();
 
@@ -67,6 +81,8 @@ public class MainManager : MonoBehaviour {
 
         backButtonInStageSelect.onClick.AsObservable()
             .Do(_ => {
+                SetUIMode(UIMode.Default);
+
                 var showList = new List<Transform>();
                 showList.Add(goToStageSelectButton.transform);
                 showList.Add(optionButton.transform);
@@ -91,6 +107,7 @@ public class MainManager : MonoBehaviour {
 
         playButton.onClick.AsObservable()
             .Do(_ => {
+                SetUIMode(UIMode.Default);
                 PlayGame();
 
                 var fadeOutList = new List<Transform>();
@@ -98,6 +115,20 @@ public class MainManager : MonoBehaviour {
                 UIAnimationManager.FadeOut(fadeOutList);
             })
             .Subscribe();
+    }
+
+    private void SetUIMode(UIMode uiMode){
+        if(uiMode == UIMode.Default){
+            background.sprite = null;
+            camera.position = cameraPosDefault;
+            uiCanvas.SetActive(true);
+            messageCanvas.SetActive(true);
+        }else if(uiMode == UIMode.StageSelect){
+            background.sprite = backgroundSprite;
+            camera.position = cameraPosStageSelect;
+            uiCanvas.SetActive(false);
+            messageCanvas.SetActive(false);
+        }
     }
 
     private void PlayGame() {
@@ -119,6 +150,9 @@ public class MainManager : MonoBehaviour {
             var scrollItem = stageSelectScrollContent.transform.GetChild(i).GetComponent<StageSelectScrollItemManager>();
             scrollItem.SetBackgroundColor((i + 1) == selectedStageNum);
         }
+
+        gameManager.ResetGame();
+        gameManager.SetStageForStageSelect(stageNum);
     }
 
     private void SetStageSelectScroll() {
@@ -136,7 +170,9 @@ public class MainManager : MonoBehaviour {
             scrollItem.SetText("LEVEL " + stageNum.ToString());
             scrollItem.ShowLockIcon(!isCleared);
             scrollItem.SetBackgroundColor(selectedStageNum == stageNum);
-            scrollItem.SetOnClickAction(() => SetSelectedStage(stageNum));
+            scrollItem.SetOnClickAction(() => {
+              SetSelectedStage(stageNum);
+            });
         }
     }
 
