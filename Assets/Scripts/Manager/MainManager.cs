@@ -36,11 +36,14 @@ public class MainManager : MonoBehaviour {
     private int selectedStageNum = 1;
 
     void Start() {
-        GetSaveData();
         background.sprite = null;
 
         goToStageSelectButton.onClick.AsObservable()
             .Do(_ => {
+                GetSaveData();
+                DestroyStageSelectScroll();
+                SetStageSelectScroll();
+
                 var list = new List<Transform>();
                 list.Add(goToStageSelectButton.transform);
                 list.Add(optionButton.transform);
@@ -49,12 +52,10 @@ public class MainManager : MonoBehaviour {
                 UIAnimationManager.HideLeft(list);
 
                 var showList = new List<Transform>();
-                SetStageSelectScroll();
                 showList.Add(stageSelectScrollView.transform);
                 UIAnimationManager.ShowLeft(showList);
 
                 var showRightList = new List<Transform>();
-                SetSelectedStage(selectedStageNum);
                 showRightList.Add(selectedStageInfoText.transform);
                 UIAnimationManager.ShowRight(showRightList);
 
@@ -117,13 +118,13 @@ public class MainManager : MonoBehaviour {
             .Subscribe();
     }
 
-    private void SetUIMode(UIMode uiMode){
-        if(uiMode == UIMode.Default){
+    private void SetUIMode(UIMode uiMode) {
+        if (uiMode == UIMode.Default) {
             background.sprite = null;
             camera.position = cameraPosDefault;
             uiCanvas.SetActive(true);
             messageCanvas.SetActive(true);
-        }else if(uiMode == UIMode.StageSelect){
+        } else if (uiMode == UIMode.StageSelect) {
             background.sprite = backgroundSprite;
             camera.position = cameraPosStageSelect;
             uiCanvas.SetActive(false);
@@ -155,6 +156,12 @@ public class MainManager : MonoBehaviour {
         gameManager.SetStageForStageSelect(stageNum);
     }
 
+    private void DestroyStageSelectScroll() {
+        foreach (Transform item in stageSelectScrollContent.transform) {
+            Destroy(item.gameObject);
+        }
+    }
+
     private void SetStageSelectScroll() {
         int allStageNum = gameManager.stagePrefabList.Count;
         for (int i = 0; i < allStageNum; i++) {
@@ -171,7 +178,7 @@ public class MainManager : MonoBehaviour {
             scrollItem.ShowLockIcon(!isCleared);
             scrollItem.SetBackgroundColor(selectedStageNum == stageNum);
             scrollItem.SetOnClickAction(() => {
-              SetSelectedStage(stageNum);
+                SetSelectedStage(stageNum);
             });
         }
     }

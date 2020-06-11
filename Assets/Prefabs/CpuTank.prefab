@@ -374,7 +374,7 @@ MonoBehaviour:
   tankTracksRight: {fileID: 384750171483868293}
   tankType: 0
   myRigidbody: {fileID: 0}
-  isDebug: 0
+  isDebug: 1
   targetObject: {fileID: 0}
 --- !u!114 &9001003181950914652
 MonoBehaviour:
