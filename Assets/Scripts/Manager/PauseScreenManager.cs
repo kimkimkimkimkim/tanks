@@ -26,6 +26,7 @@ public class PauseScreenManager : MonoBehaviour {
 
         menuButton.onClick.AsObservable()
             .Do(_ => {
+                Time.timeScale = 1;
                 // 現在のScene名を取得する
                 Scene loadScene = SceneManager.GetActiveScene();
                 // Sceneの読み直し
