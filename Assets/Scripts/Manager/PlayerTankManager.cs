@@ -47,6 +47,7 @@ public class PlayerTankManager : TankManager {
         tankShooting.shootingJoystick = shootingJoystick;
         tankShooting.tankType = tankType;
         tankShooting.cpuTankList = cpuTankList;
+        tankShooting.tankColor = tankColor;
         shootingJoystick.tankShooting = (PlayerTankShooting)tankShooting;
     }
 

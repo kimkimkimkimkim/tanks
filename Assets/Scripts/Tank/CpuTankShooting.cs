@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CpuTankShooting : TankShooting {
     [HideInInspector] public GameObject targetObject;
+    [HideInInspector] public Color tankColor;
 
     private bool canSeePlayer = false; //プレイヤーに射線が通っているかどうか
     private float fireFrequency = 4f;
@@ -19,7 +20,7 @@ public class CpuTankShooting : TankShooting {
 
         time += Time.deltaTime;
         if (time >= fireFrequency && canSeePlayer) {
-            Fire();
+            Fire(tankColor);
         }
     }
 
@@ -35,9 +36,9 @@ public class CpuTankShooting : TankShooting {
         }
     }
 
-    public override void Fire() {
+    public override void Fire(Color color) {
         time = 0f;
         tankTurret.transform.LookAt(new Vector3(targetObject.transform.position.x, tankTurret.transform.position.y, targetObject.transform.position.z));
-        base.Fire();
+        base.Fire(color);
     }
 }

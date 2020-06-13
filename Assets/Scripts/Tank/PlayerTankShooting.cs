@@ -7,6 +7,7 @@ public class PlayerTankShooting : TankShooting {
 
     public Image aimImage;
     [HideInInspector] public CpuTankManager[] cpuTankList;
+    [HideInInspector] public Color tankColor;
 
     public void TurnTank(Vector3 vector) {
         vector = new Vector3(vector.x, 0, vector.y);
@@ -35,7 +36,11 @@ public class PlayerTankShooting : TankShooting {
             Vector3 vector = targetTransform.position - transform.position;
             vector = new Vector3(vector.x, vector.z , 0);
             TurnTank(vector);
-            Fire();
+            Fire(tankColor);
         }
+    }
+
+    public void ManualFire(){
+        Fire(tankColor);
     }
 }

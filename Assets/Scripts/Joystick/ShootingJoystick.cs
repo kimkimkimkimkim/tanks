@@ -58,6 +58,6 @@ public class ShootingJoystick : Joystick {
     }
 
     private void ManualFire() {
-        tankShooting.Fire();
+        tankShooting.ManualFire();
     }
 }
