@@ -374,7 +374,7 @@ MonoBehaviour:
   tankTracksRight: {fileID: 384750171483868293}
   tankType: 0
   myRigidbody: {fileID: 0}
-  isDebug: 1
+  isDebug: 0
   targetObject: {fileID: 0}
 --- !u!114 &9001003181950914652
 MonoBehaviour:
@@ -396,6 +396,7 @@ MonoBehaviour:
   tankType: 0
   shootingJoystick: {fileID: 0}
   targetObject: {fileID: 0}
+  tankColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &5126556655579487354
 MonoBehaviour:
   m_ObjectHideFlags: 0
