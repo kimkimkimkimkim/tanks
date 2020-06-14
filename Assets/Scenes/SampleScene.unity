@@ -4918,7 +4918,7 @@ MonoBehaviour:
     tankShooting: {fileID: 0}
     cpuTankList: []
   stagePrefabList:
-  - {fileID: 3641576656000520454, guid: 69aff75a4a2eab7408d4d6f83f368ad6, type: 3}
+  - {fileID: 427167742859533340, guid: 98478e3ee9d9a4893838c0b6d1ce06a8, type: 3}
   - {fileID: 459012862606246523, guid: 35966dad1f0248e4d9cf47708f9696ab, type: 3}
   - {fileID: 1098983076123010589, guid: f55335bd50fa51e4dbff57b4ba7d555e, type: 3}
   - {fileID: 7557417022329233029, guid: dea9ed2a444f6fd4599a9846ce31763c, type: 3}
