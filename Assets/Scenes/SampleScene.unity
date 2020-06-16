@@ -4919,10 +4919,10 @@ MonoBehaviour:
     cpuTankList: []
   stagePrefabList:
   - {fileID: 1268507657738438885, guid: 540ef8a5f7d004345abb3387a3fd32ae, type: 3}
-  - {fileID: 459012862606246523, guid: 35966dad1f0248e4d9cf47708f9696ab, type: 3}
-  - {fileID: 1098983076123010589, guid: f55335bd50fa51e4dbff57b4ba7d555e, type: 3}
-  - {fileID: 7557417022329233029, guid: dea9ed2a444f6fd4599a9846ce31763c, type: 3}
-  - {fileID: 3401711462953971181, guid: e7daf238940a9c644b304fa93bb85a75, type: 3}
+  - {fileID: 885333171065071243, guid: 508b682ff1bb749e09e6ac13f9e596d3, type: 3}
+  - {fileID: 7094793743995847815, guid: f93538e3db69a44e2b27fa60426fd4e9, type: 3}
+  - {fileID: 384597209117557338, guid: 8b317af0bf1624c26a40fe4b5d4e37bd, type: 3}
+  - {fileID: 3602131282747688260, guid: f9b8538efd073491ca9d68326ea1950f, type: 3}
   messageText: {fileID: 780938282}
   resultScreen: {fileID: 1121345791}
   navMeshSurface: {fileID: 2067434289}

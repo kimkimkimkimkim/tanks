@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 1616500111532093055}
   - component: {fileID: 1616500111532091546}
   m_Layer: 0
-  m_Name: Stage6
+  m_Name: StageRunRace
   m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
