@@ -9,6 +9,7 @@ using DG.Tweening;
 public enum UIMode {
     Default,
     StageSelect,
+    Title,
 }
 
 public class MainManager : MonoBehaviour {
@@ -31,6 +32,7 @@ public class MainManager : MonoBehaviour {
     public Vector3 cameraPosStageSelect;
     public GameObject uiCanvas;
     public GameObject messageCanvas;
+    public GameObject titleField;
 
     private List<StageData> clearStageDataList;
     private int selectedStageNum = 1;
@@ -103,6 +105,9 @@ public class MainManager : MonoBehaviour {
                 fadeOutList.Add(playButton.transform);
                 fadeOutList.Add(backButtonInStageSelect.transform);
                 UIAnimationManager.FadeOut(fadeOutList);
+                
+                gameManager.ResetGame();
+                SetUIMode(UIMode.Title);
             })
             .Subscribe();
 
@@ -129,6 +134,15 @@ public class MainManager : MonoBehaviour {
             camera.position = cameraPosStageSelect;
             uiCanvas.SetActive(false);
             messageCanvas.SetActive(false);
+            background.gameObject.SetActive(true);
+            titleField.SetActive(false);
+        } else if(uiMode == UIMode.Title){
+            background.sprite = null;
+            camera.position = cameraPosDefault;
+            uiCanvas.SetActive(false);
+            messageCanvas.SetActive(false);
+            background.gameObject.SetActive(false);
+            titleField.SetActive(true);
         }
     }
 

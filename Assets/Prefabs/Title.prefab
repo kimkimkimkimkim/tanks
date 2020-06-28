@@ -2298,10 +2298,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8108231826037202162}
-  - component: {fileID: 909045918393719133}
   m_Layer: 0
   m_Name: Title
-  m_TagString: Stage
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2313,7 +2312,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8108231826037202165}
-  m_LocalRotation: {x: 0.16925147, y: -0, z: -0, w: 0.98557293}
+  m_LocalRotation: {x: 0.16925485, y: 0, z: 0, w: 0.9855724}
   m_LocalPosition: {x: 2.9, y: 8.1, z: 2.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2327,27 +2326,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 19.489, y: 0, z: 0}
---- !u!114 &909045918393719133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8108231826037202165}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40adc1b80c2020c4c9e11a66ee3d594f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPosition: {fileID: 8225619952139092776}
-  cpuTankList:
-  - tankType: 1
-    instance: {fileID: 0}
-    spawnPoint: {fileID: 271729532941165051}
-    playerTank: {fileID: 0}
-    tankMovementLandMark: {fileID: 0}
-    tankMovement: {fileID: 0}
-    tankShooting: {fileID: 0}
 --- !u!1 &8115693484169361315
 GameObject:
   m_ObjectHideFlags: 0
