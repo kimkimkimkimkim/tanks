@@ -21,6 +21,7 @@ public class CpuTankManager : TankManager {
     private void SetTankMovement() {
         tankMovement = instance.GetComponent<CpuTankMovement>();
         tankMovement.targetObject = tankMovementLandMark;
+        tankMovement.tankType = tankType;
     }
 
     private void SetTankShooting() {
@@ -42,6 +43,8 @@ public class CpuTankManager : TankManager {
         switch (tankType) {
             case TankType.CPU1:
                 return new Color(0.6980392f, 0.1647059f, 0.2117647f);
+            case TankType.CPU2:
+                return new Color(0.6224f,0.6415f,0.0938f);
             default:
                 return new Color(42, 100, 178);
         }

@@ -769,7 +769,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPosition: {fileID: 8947608225784815960}
   cpuTankList:
-  - tankType: 1
+  - tankType: 2
     instance: {fileID: 0}
     spawnPoint: {fileID: 1240350421509175689}
     playerTank: {fileID: 0}

@@ -5,7 +5,8 @@ using UnityEngine;
 
 public enum TankType {
     Player,
-    CPU1
+    CPU1,
+    CPU2
 }
 
 [Serializable]
